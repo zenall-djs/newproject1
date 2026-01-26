@@ -140,7 +140,7 @@ void Motor_Init(uint8_t id) {
     Motor_Enable(id, 0);  // 初始禁用
     
     // 初始化延迟
-    HAL_Delay(100);
+    HAL_Delay(10);
 }
 
 /**
@@ -195,6 +195,12 @@ void Motor_Stop(uint8_t motor_id) {
     motor->target_steps = 0;
     motor->current_steps = 0;
     Motor_Enable(motor_id, 0);
+	
+    HAL_GPIO_WritePin(motor->step_port, motor->step_pin, GPIO_PIN_RESET);
+    
+    HAL_GPIO_WritePin(motor->en_port, motor->en_pin, GPIO_PIN_SET);  // 高电平 = 禁用
+    
+    HAL_Delay(1);
 }
 
 /**
