@@ -38,7 +38,7 @@ extern "C" {
 /* USER CODE BEGIN ET */
 // 步进电机相关常量定义
 #define MOTOR_COUNT 3
-#define STEP_DELAY_US 1000
+#define STEP_DELAY_MS 20
 #define UART_RX_BUFFER_SIZE 32
 
 // 串口命令定义
@@ -47,7 +47,7 @@ extern "C" {
 #define CMD_MOVE 0x01
 #define CMD_STOP 0x02
 #define CMD_SET_SPEED 0x03
-#define CMD_SET_DIR 0x04
+#define CMD_SET_DIR 0x04 
 
 // 响应状态码
 #define STATUS_START 0x00
@@ -63,6 +63,12 @@ typedef struct {
     uint16_t dir_pin;
     GPIO_TypeDef* en_port;
     uint16_t en_pin;
+	  GPIO_TypeDef* modea_port;
+    uint16_t modea_pin;
+    GPIO_TypeDef* modeb_port;
+    uint16_t modeb_pin;
+    GPIO_TypeDef* modec_port;
+    uint16_t modec_pin;
     
     // 电机控制参数
     uint32_t target_steps;

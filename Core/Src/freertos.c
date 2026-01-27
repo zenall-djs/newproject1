@@ -131,7 +131,7 @@ void StartDefaultTask(void const * argument)
   Motor_InitAll();
   
   // 发送任务启动消息
-HAL_UART_Transmit(&huart1, (uint8_t*)"Motor Task Started - DRV8825 Stepper Control\n", 45, 100);
+HAL_UART_Transmit(&huart1, (uint8_t*)"Motor Task Started\n", 19, 100);
   Motor_SetDirection(0, 1);
   Motor_Enable(0, 1);
   /* Infinite loop */

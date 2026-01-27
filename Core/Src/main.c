@@ -66,6 +66,7 @@ void MX_FREERTOS_Init(void);
 // 电机控制函数
 void Motor_InitAll(void);
 void Motor_Init(uint8_t id);
+void Motor_SetStepMode_1_8(void);
 void Motor_Enable(uint8_t motor_id, uint8_t enable);
 void Motor_SetDirection(uint8_t motor_id, uint8_t direction);
 void Motor_StartMove(uint8_t motor_id, uint32_t steps, uint8_t dir);
@@ -86,9 +87,33 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim);
   * @brief 初始化所有电机
   */
 void Motor_InitAll(void) {
+	  Motor_SetStepMode_1_8();
     for (uint8_t i = 0; i < MOTOR_COUNT; i++) {
         Motor_Init(i);
     }
+}
+
+/**
+  * @brief 设置所有电机为1/8细分模式（011）
+  * 注意：此函数在所有电机初始化之前调用
+  */
+void Motor_SetStepMode_1_8(void) {
+    // 电机0的细分引脚设置：MODEA=1, MODEB=1, MODEC=0
+    HAL_GPIO_WritePin(MODEA0_GPIO_Port, MODEA0_Pin, GPIO_PIN_SET);    
+    HAL_GPIO_WritePin(MODEB0_GPIO_Port, MODEB0_Pin, GPIO_PIN_SET);    
+    HAL_GPIO_WritePin(MODEC0_GPIO_Port, MODEC0_Pin, GPIO_PIN_RESET);  
+    
+//    // 电机1的细分引脚设置：MODEA=1, MODEB=1, MODEC=0
+//    HAL_GPIO_WritePin(MODEA1_GPIO_Port, MODEA1_Pin, GPIO_PIN_SET);    
+//    HAL_GPIO_WritePin(MODEB1_GPIO_Port, MODEB1_Pin, GPIO_PIN_SET);    
+//    HAL_GPIO_WritePin(MODEC1_GPIO_Port, MODEC1_Pin, GPIO_PIN_RESET);  
+//    
+//    // 电机2的细分引脚设置：MODEA=1, MODEB=1, MODEC=0
+//    HAL_GPIO_WritePin(MODEA2_GPIO_Port, MODEA2_Pin, GPIO_PIN_SET);    
+//    HAL_GPIO_WritePin(MODEB2_GPIO_Port, MODEB2_Pin, GPIO_PIN_SET);    
+//    HAL_GPIO_WritePin(MODEC2_GPIO_Port, MODEC2_Pin, GPIO_PIN_RESET);  
+    
+    HAL_Delay(10);
 }
 
 /**
@@ -132,7 +157,7 @@ void Motor_Init(uint8_t id) {
     motor->current_steps = 0;
     motor->is_moving = 0;
     motor->direction = 1;
-    motor->step_delay = 5000;  
+    motor->step_delay = STEP_DELAY_MS; 
     
     // 初始状态设置
     HAL_GPIO_WritePin(motor->step_port, motor->step_pin, GPIO_PIN_RESET);
@@ -172,6 +197,8 @@ void Motor_StartMove(uint8_t motor_id, uint32_t steps, uint8_t dir) {
     if (motor_id >= MOTOR_COUNT) return;
     
     StepperMotor* motor = &motors[motor_id];
+	
+	  uint32_t microsteps = steps * 8;
     
     // 设置运动参数
     motor->target_steps = steps;
@@ -217,12 +244,12 @@ uint32_t test = 0;
   */
 void Motor_ProcessStep(void) {
     static uint32_t last_step_time = 0;
-    uint32_t current_time = HAL_GetTick();
-    
-    // 检查步进间隔
-    if (current_time - last_step_time < STEP_DELAY_US / 1000) {
-        return;
-    }
+//    uint32_t current_time = HAL_GetTick();
+//    
+//    // 检查步进间隔
+//    if (current_time - last_step_time < STEP_DELAY_MS) {
+//        return;
+//    }
     
     for (uint8_t i = 0; i < MOTOR_COUNT; i++) {
         StepperMotor* motor = &motors[i];
@@ -236,11 +263,12 @@ void Motor_ProcessStep(void) {
             if (motor->current_steps >= motor->target_steps) {
                 motor->is_moving = 0;
                 Motor_Enable(i, 0);  // 移动完成，禁用电机
+							
             }
         }
     }
     
-    last_step_time = current_time;
+//    last_step_time = current_time;
 }
 
 /**
