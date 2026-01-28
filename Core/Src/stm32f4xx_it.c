@@ -192,7 +192,7 @@ void TIM2_IRQHandler(void)
   /* USER CODE BEGIN TIM2_IRQn 0 */
 
   /* USER CODE END TIM2_IRQn 0 */
-  HAL_TIM_IRQHandler(&htim2);
+//  HAL_TIM_IRQHandler(&htim2);
 	CLEAR_BIT(TIM2->SR, TIM_SR_UIF);
 //	HAL_GPIO_TogglePin(M_STEP0_GPIO_Port, M_STEP0_Pin);
   /* USER CODE BEGIN TIM2_IRQn 1 */

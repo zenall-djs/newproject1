@@ -95,7 +95,6 @@ void Motor_InitAll(void) {
 
 /**
   * @brief 设置所有电机为1/8细分模式（011）
-  * 注意：此函数在所有电机初始化之前调用
   */
 void Motor_SetStepMode_1_8(void) {
     // 电机0的细分引脚设置：MODEA=1, MODEB=1, MODEC=0
@@ -113,7 +112,7 @@ void Motor_SetStepMode_1_8(void) {
 //    HAL_GPIO_WritePin(MODEB2_GPIO_Port, MODEB2_Pin, GPIO_PIN_SET);    
 //    HAL_GPIO_WritePin(MODEC2_GPIO_Port, MODEC2_Pin, GPIO_PIN_RESET);  
     
-    HAL_Delay(10);
+    HAL_Delay(100);
 }
 
 /**
@@ -244,12 +243,6 @@ uint32_t test = 0;
   */
 void Motor_ProcessStep(void) {
     static uint32_t last_step_time = 0;
-//    uint32_t current_time = HAL_GetTick();
-//    
-//    // 检查步进间隔
-//    if (current_time - last_step_time < STEP_DELAY_MS) {
-//        return;
-//    }
     
     for (uint8_t i = 0; i < MOTOR_COUNT; i++) {
         StepperMotor* motor = &motors[i];
@@ -297,34 +290,34 @@ void StartMotorTask(void const * argument) {
     // 简单的电机运动演示
     for (;;) {
     // 电机1：正向移动500步
-//    Motor_StartMove(0, 500, 1);
-//    osDelay(3000);  // 等待3秒完成移动
-//    
-//    // 电机1：反向移动500步
-//    Motor_StartMove(0, 500, 0);
-//    osDelay(3000);
-//    
-//    // 电机2：正向移动300步
-//    Motor_StartMove(1, 300, 1);
-//    osDelay(2000);
-//    
-//    // 电机2：反向移动300步
-//    Motor_StartMove(1, 300, 0);
-//    osDelay(2000);
-//    
-//    // 电机3：正向移动200步
-//    Motor_StartMove(2, 200, 1);
-//    osDelay(1500);
-//    
-//    // 电机3：反向移动200步
-//    Motor_StartMove(2, 200, 0);
-//    osDelay(1500);
-//    
-//    // 所有电机同时正向移动100步（同步演示）
-//    Motor_StartMove(0, 100, 1);
-//    Motor_StartMove(1, 100, 1);
-//    Motor_StartMove(2, 100, 1);
-//    osDelay(2000);
+//	Motor_StartMove(0, 500, 1);
+//	osDelay(3000);  // 等待3秒完成移动
+//	
+//	// 电机1：反向移动500步
+//	Motor_StartMove(0, 500, 0);
+//	osDelay(3000);
+//	
+//	// 电机2：正向移动300步
+//	Motor_StartMove(1, 300, 1);
+//	osDelay(2000);
+//	
+//	// 电机2：反向移动300步
+//	Motor_StartMove(1, 300, 0);
+//	osDelay(2000);
+//	
+//	// 电机3：正向移动200步
+//	Motor_StartMove(2, 200, 1);
+//	osDelay(1500);
+//	
+//	// 电机3：反向移动200步
+//	Motor_StartMove(2, 200, 0);
+//	osDelay(1500);
+//	
+//	// 所有电机同时正向移动100步（同步演示）
+//	Motor_StartMove(0, 100, 1);
+//	Motor_StartMove(1, 100, 1);
+//	Motor_StartMove(2, 100, 1);
+//	osDelay(2000);
     }
 }
 /* USER CODE END 0 */

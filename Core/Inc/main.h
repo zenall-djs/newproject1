@@ -63,13 +63,7 @@ typedef struct {
     uint16_t dir_pin;
     GPIO_TypeDef* en_port;
     uint16_t en_pin;
-	  GPIO_TypeDef* modea_port;
-    uint16_t modea_pin;
-    GPIO_TypeDef* modeb_port;
-    uint16_t modeb_pin;
-    GPIO_TypeDef* modec_port;
-    uint16_t modec_pin;
-    
+
     // 电机控制参数
     uint32_t target_steps;
     uint32_t current_steps;
