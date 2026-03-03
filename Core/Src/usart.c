@@ -19,6 +19,7 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "usart.h"
+#include <stdio.h>
 
 /* USER CODE BEGIN 0 */
 
@@ -26,7 +27,12 @@
 
 UART_HandleTypeDef huart1;
 UART_HandleTypeDef huart3;
-
+int fputc(int ch, FILE *f)
+{
+    uint8_t data = (uint8_t)ch;
+    HAL_UART_Transmit(&huart1, &data, 1, 1);
+    return ch;
+}
 /* USART1 init function */
 
 void MX_USART1_UART_Init(void)

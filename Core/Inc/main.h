@@ -41,20 +41,6 @@ extern "C" {
 #define STEP_DELAY_MS 20
 #define UART_RX_BUFFER_SIZE 32
 
-// 串口命令定义
-#define CMD_START 0xAA
-#define CMD_END 0x55
-#define CMD_MOVE 0x01
-#define CMD_STOP 0x02
-#define CMD_SET_SPEED 0x03
-#define CMD_SET_DIR 0x04 
-
-// 响应状态码
-#define STATUS_START 0x00
-#define STATUS_COMPLETE 0x01
-#define STATUS_STOP 0x02
-#define STATUS_ERROR 0xFF
-
 // 步进电机结构体
 typedef struct {
     GPIO_TypeDef* step_port;

@@ -39,7 +39,7 @@
 "newproject\cmsis_os.o"
 "newproject\heap_4.o"
 "newproject\port.o"
---strict --scatter "newproject\newproject.sct"
+--library_type=microlib --strict --scatter "newproject\newproject.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
 --list "newproject.map" -o newproject\newproject.axf
