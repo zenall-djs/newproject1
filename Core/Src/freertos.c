@@ -140,7 +140,7 @@ HAL_UART_Transmit(&huart1, (uint8_t*)"Motor Task Started\n", 19, 100);
     /* 电机运动序列演示 */
     
     // 电机1：正向移动500步
-//    Motor_StartMove(2, 500, 1);
+//    Motor_StartMove(0, 500, 1);
 		osDelay(10);
 //    osDelay(3000);  // 等待3秒完成移动
     

@@ -289,25 +289,29 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
   */
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
     if (huart->Instance == USART1) {
-			HAL_UART_Transmit(&huart1, &rx_byte, 1, 10);  //检验调试
         // 将接收到的字符存入缓冲区
         if (rx_index < RX_BUFFER_SIZE - 1) {
             if (rx_byte == '\n' || rx_byte == '\r') {
-                // 遇到换行符，结束命令
-                rx_buffer[rx_index] = '\0';
-							        
-				        char echo[RX_BUFFER_SIZE + 3];
-        sprintf(echo, "%s\r\n", cmd_buffer);	
-        UART_SendString(echo);    //回显
-							
-                strcpy(cmd_buffer, rx_buffer);       
-                cmd_ready = 1;                         
-                rx_index = 0;                           
+                if (rx_index > 0) {
+                    rx_buffer[rx_index] = '\0';
+                    
+                    // 回显
+                    char echo[RX_BUFFER_SIZE + 3];
+                    sprintf(echo, "rec：%s\r\n", rx_buffer);
+                    UART_SendString(echo);
+                    
+                    // 复制到命令缓冲区并置标志
+                    strcpy(cmd_buffer, rx_buffer);
+                    cmd_ready = 1;
+                    
+                    // 清空索引，准备下一次接收
+                    rx_index = 0;
+                }
             } else {
                 rx_buffer[rx_index++] = (char)rx_byte;
             }
         } else {
-            // 缓冲区溢出，重置
+            // 缓冲区溢出，丢弃当前数据并重置
             rx_index = 0;
         }
         // 重新开启接收
@@ -350,9 +354,10 @@ void Parse_Command(char *cmd) {
     uint32_t steps;
     
     // 解析格式: M<id><F/R><steps> 或 M<id>S
-    if (cmd[0] != 'M' && cmd[0] != 'm') {
+//  while (*cmd == ' ') cmd++;  
+	if (cmd[0] != 'M' && cmd[0] != 'm') {
 //        UART_SendString("Invalid command format. Use M0F500 / M0R500 / M0S\r\n");
-			  printf("Invalid command format. Use M0F500 / M0R500 / M0S[%c]\r\n",cmd[0]);
+			  printf("Invalid command format. Use M0F500 / M0R500 / M0S[%s]\r\n",cmd);
         return;
     }
     
