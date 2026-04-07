@@ -28,6 +28,8 @@
 #include "main.h"
 #include <string.h>
 #include <stdio.h>
+#include "adc.h"
+
 extern UART_HandleTypeDef huart1;
 /* USER CODE END Includes */
 
@@ -105,7 +107,7 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the thread(s) */
   /* definition and creation of defaultTask */
-  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 128);
+  osThreadDef(defaultTask, StartDefaultTask, osPriorityNormal, 0, 256);
   defaultTaskHandle = osThreadCreate(osThread(defaultTask), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
@@ -141,7 +143,10 @@ HAL_UART_Transmit(&huart1, (uint8_t*)"Motor Task Started\n", 19, 100);
     
     // 电机1：正向移动500步
 //    Motor_StartMove(0, 500, 1);
-		osDelay(10);
+//		float voltage = ADC_ReadVoltage(LIQUID_SENSE_ADC, LIQUID_SENSE_ADC_CHANNEL);
+//		UART_SendFormatted("ADC init: raw=%d, voltage=%.2f V\r\n",
+//                       (int)(voltage/3.3f*4095), voltage);
+		osDelay(100);
 //    osDelay(3000);  // 等待3秒完成移动
     
 //    // 电机1：反向移动500步

@@ -58,3 +58,5 @@ newproject\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 newproject\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 newproject\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
 newproject\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\ctype.h
+newproject\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdarg.h
+newproject\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\math.h

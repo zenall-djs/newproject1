@@ -51,3 +51,4 @@ newproject\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr
 newproject\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
 newproject\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\string.h
 newproject\freertos.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+newproject\freertos.o: ../Core/Inc/adc.h
