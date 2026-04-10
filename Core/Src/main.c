@@ -327,7 +327,7 @@ static void MeasureAndDispense(const char* result_prefix, uint8_t is_cal, uint8_
 
 // ---------- 电机动作函数 ----------
 static void action_cal_step1(void) {
-    // 电机2转圈，方向1
+    // 电机2转3圈，方向1
     Motor_MoveSteps(2, 3 * STEPS_PER_REV, 0);
 }
 static void action_cal_step2(void) {
@@ -384,7 +384,7 @@ static void action_prime_diluted(void) {
     Motor_StartMove(0, 600, 1);
 }
 static void action_disp_stda(void) {
-    Motor_StartMove(0, 100, 1);
+    Motor_StartMove(2, 1000, 1);
 }
 static void action_disp_stdb(void) {
     Motor_StartMove(1, 1000, 1);

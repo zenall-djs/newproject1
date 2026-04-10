@@ -27,44 +27,7 @@ Project File Date:  03/03/2026
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'newproject'
-compiling main.c...
-../Core/Src/main.c(188): error:  #20: identifier "STD_B_NA" is undefined
-      cal_na.slope = (e_na_b - e_na_a) / (log10f(STD_B_NA) - log10f(STD_A_NA));
-../Core/Src/main.c(188): error:  #20: identifier "STD_A_NA" is undefined
-      cal_na.slope = (e_na_b - e_na_a) / (log10f(STD_B_NA) - log10f(STD_A_NA));
-../Core/Src/main.c(192): error:  #20: identifier "STD_B_K" is undefined
-      cal_k.slope = (e_k_b - e_k_a) / (log10f(STD_B_K) - log10f(STD_A_K));
-../Core/Src/main.c(192): error:  #20: identifier "STD_A_K" is undefined
-      cal_k.slope = (e_k_b - e_k_a) / (log10f(STD_B_K) - log10f(STD_A_K));
-../Core/Src/main.c(196): error:  #20: identifier "STD_B_CL" is undefined
-      cal_cl.slope = (e_cl_b - e_cl_a) / (log10f(STD_B_CL) - log10f(STD_A_CL));
-../Core/Src/main.c(196): error:  #20: identifier "STD_A_CL" is undefined
-      cal_cl.slope = (e_cl_b - e_cl_a) / (log10f(STD_B_CL) - log10f(STD_A_CL));
-../Core/Src/main.c(312): error:  #20: identifier "STD_A_NA" is undefined
-              UART_SendFormatted("1-CAL_Na %.2f K %.2f Cl %.2f\r\n", STD_A_NA, STD_A_K, STD_A_CL);
-../Core/Src/main.c(312): error:  #20: identifier "STD_A_K" is undefined
-              UART_SendFormatted("1-CAL_Na %.2f K %.2f Cl %.2f\r\n", STD_A_NA, STD_A_K, STD_A_CL);
-../Core/Src/main.c(312): error:  #20: identifier "STD_A_CL" is undefined
-              UART_SendFormatted("1-CAL_Na %.2f K %.2f Cl %.2f\r\n", STD_A_NA, STD_A_K, STD_A_CL);
-../Core/Src/main.c(314): error:  #20: identifier "STD_B_NA" is undefined
-              UART_SendFormatted("2-CAL_Na %.2f K %.2f Cl %.2f\r\n", STD_B_NA, STD_B_K, STD_B_CL);
-../Core/Src/main.c(314): error:  #20: identifier "STD_B_K" is undefined
-              UART_SendFormatted("2-CAL_Na %.2f K %.2f Cl %.2f\r\n", STD_B_NA, STD_B_K, STD_B_CL);
-../Core/Src/main.c(314): error:  #20: identifier "STD_B_CL" is undefined
-              UART_SendFormatted("2-CAL_Na %.2f K %.2f Cl %.2f\r\n", STD_B_NA, STD_B_K, STD_B_CL);
-../Core/Src/main.c: 0 warnings, 12 errors
-compiling adc.c...
-compiling gpio.c...
-compiling usart.c...
-compiling freertos.c...
-../Core/Src/freertos.c(191): warning:  #1-D: last line of file ends without a newline
-  /* USER CODE END Application */
-../Core/Src/freertos.c: 1 warning, 0 errors
-compiling stm32f4xx_it.c...
-compiling tim.c...
-compiling stm32f4xx_hal_msp.c...
-compiling spi.c...
-"newproject\newproject.axf" - 12 Error(s), 1 Warning(s).
+"newproject\newproject.axf" - 0 Error(s), 0 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -87,8 +50,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.2.0
-Target not created.
-Build Time Elapsed:  00:00:07
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>

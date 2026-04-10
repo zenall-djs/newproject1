@@ -138,13 +138,13 @@ typedef struct {
 #define DEFAULT_SLOPE_CL   -59.16f
 #define DEFAULT_INTERCEPT  0.0f
 
-//// 标液已知浓度
-//#define STD_A_NA  140.0f
-//#define STD_A_K   4.0f
-//#define STD_A_CL  100.0f
-//#define STD_B_NA  80.0f
-//#define STD_B_K   2.0f
-//#define STD_B_CL  60.0f
+// 标液已知浓度
+#define STD_A_NA  140.0f
+#define STD_A_K   4.0f
+#define STD_A_CL  100.0f
+#define STD_B_NA  110.0f
+#define STD_B_K   8.0f
+#define STD_B_CL  70.0f
 
 // ---------- 光耦检测引脚定义 ----------
 #define LIQUID_SENSE_PIN       GPIO_PIN_0
